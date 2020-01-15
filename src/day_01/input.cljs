@@ -1,5 +1,7 @@
-export const INPUT_01: string =
-`+7
+(ns day-01.input)
+
+(def INPUT_01
+"+7
 +15
 +18
 -15
@@ -958,4 +960,4 @@ export const INPUT_01: string =
 +17
 -15
 +19
--72362`;
+-72362")

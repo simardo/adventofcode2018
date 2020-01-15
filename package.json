@@ -3,12 +3,11 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "build": "tsc"
+        "build": "java -cp \"cljs.jar;src\" cljs.main --repl-env node"
     },
     "author": "Martin Simard",
     "license": "MIT",
     "devDependencies": {
-        "@types/node": "^12.0.0",
-        "typescript": "^3.7.4"
+        "source-map-support": "0.5.16"
     }
 }
