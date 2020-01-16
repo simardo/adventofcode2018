@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "build": "java -cp \"cljs.jar;src\" cljs.main --repl-env node"
+        "build": "java -cp \"cljs.jar;src\" cljs.main --repl-env node",
+        "prod": "java -cp \"cljs.jar;src\" cljs.main --target node --output-to main.js -c day-01.puzzle"
     },
     "author": "Martin Simard",
     "license": "MIT",
