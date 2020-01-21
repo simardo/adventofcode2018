@@ -1,30 +1,28 @@
 (ns day-01.puzzle
-    (:require [day-01.input :as input]
-              [clojure.string :as cstr]
+    (:require [clojure.string :as cstr]
               [goog.string :as gstr]))
 
-(println "PART 1")
+; PART 1
 
-(println
+(defn do-part1 [s]
     (reduce +
         (map gstr/parseInt
-            (cstr/split-lines input/INPUT_01)
+            (cstr/split-lines s)
         )
     )
 )
 
+; PART 2
 
-(println "PART 2")
-
-(println
+(defn do-part2 [s]
     (let [refs (map gstr/parseInt
-                (cstr/split-lines input/INPUT_01))]
+                (cstr/split-lines s))]
         (loop [i 0 acc 0 r #{}]
             (if (< i (count refs))
                 (let [a (+ acc (nth refs i))]
                     (if (not (contains? r a))
                         (recur (inc i) a (conj r a))
-                        (println a)
+                        a
                     )
                 )
                 (recur 0 acc r)
