@@ -3,9 +3,9 @@
               [clojure.string :as cstr])
 )
 
-(println "PART 1")
+; PART 1
 
-(defn calc-checksum [r m]
+(defn compute-checksum [r m]
     (let [res
         (if (> (.indexOf (vals m) 2) -1)
             (assoc r :2 (inc (get r :2)))
@@ -25,20 +25,14 @@
     )
 )
 
-(defn do-puzzle [i m]
-    (reduce calc-checksum {:2 0 :3 0}
+(defn get-checksum [i m]
+    (reduce compute-checksum {:2 0 :3 0}
         (map #(reduce compute-str {} (sequence %))
             (cstr/split-lines i)
         )
     )
 )
 
-(let [cs (do-puzzle input/INPUT_02 {:2 0 :3 0})] (println (* (get cs :2) (get cs :3))))
-
-; "abcdef
-; bababc
-; abbcde
-; abcccd
-; aabcdd
-; abcdee
-; ababab"
+(defn do-part1 [s]
+    (let [cs (get-checksum s {:2 0 :3 0})] (* (get cs :2) (get cs :3)))
+)
