@@ -36,3 +36,41 @@
 (defn do-part1 [s]
     (let [cs (get-checksum s {:2 0 :3 0})] (* (get cs :2) (get cs :3)))
 )
+
+; PART 2
+
+(defn do-compare [s c]
+    (let [m (filter #(not= % nil)
+                (map #(if (= %1 %2) %1 nil)
+                    (sequence s) (sequence c)
+                )
+            )]
+        (let [ct (count m)]
+            (if (= ct (dec (count s)))
+                (apply str m)
+            )
+        )
+    )
+)
+
+(defn compute-dup [s i v]
+    (filter #(not= % nil)
+        (map #(do-compare s %)
+            (map #(nth v %)
+                (take (- (count v) i) (iterate inc i))
+            )
+        )
+    )
+)
+
+(defn do-part2 [s]
+    (let [lines (cstr/split-lines s)]
+        (nth (nth
+            (filter #(= (count %) 1)
+                (map #(compute-dup %1 %2 lines)
+                    lines (iterate inc 1)
+                )
+            )
+        0) 0)
+    )
+)

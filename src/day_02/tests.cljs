@@ -26,6 +26,12 @@ wvxyz")
     (is (= 12 (puzzle/do-part1 input_a)))
 )
 
+(deftest test-b
+    (is (= "fgij" (puzzle/do-part2 input_b)))
+)
+
 (run-tests)
 
 (println (puzzle/do-part1 input/INPUT_02))
+
+(println (puzzle/do-part2 input/INPUT_02))
