@@ -1,6 +1,5 @@
 (ns day-02.puzzle
-    (:require [day-02.input :as input]
-              [clojure.string :as cstr])
+    (:require [clojure.string :as cstr])
 )
 
 ; PART 1
