@@ -9,7 +9,7 @@ https://clojurescript.org/guides/quick-start
 ### REPL
 ```npm run repl```
 
-ex: ```cljs.user=> (require '[day-02.puzzle] :reload)(require '[day-02.tests] :reload)```
+ex: ```cljs.user=> (require '[day-03.puzzle] :reload)(require '[day-03.tests] :reload)```
 
 ### bundle
 
