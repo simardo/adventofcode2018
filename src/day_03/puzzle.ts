@@ -49,7 +49,6 @@ function* iterMatch(s: string): Generator<RegExpMatchArray> {
 
     let match: RegExpMatchArray | null;
 
-    let i = 0;
     while ((match = rx.exec(s)) !== null) {
         yield match;
     }
