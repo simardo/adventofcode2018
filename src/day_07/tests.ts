@@ -1,7 +1,7 @@
 import { doPart1, doPart2 } from './puzzle';
 
 const input: string =
-`Step C must be finished before step A can begin.
+    `Step C must be finished before step A can begin.
 Step C must be finished before step F can begin.
 Step A must be finished before step B can begin.
 Step A must be finished before step D can begin.
