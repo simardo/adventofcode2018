@@ -1,13 +1,13 @@
 import { doPart1, doPart2 } from './puzzle';
 
 const input: string =
-    `dabAcCaCBAcCcaDA`;
+    'dabAcCaCBAcCcaDA';
 
 const input2: string =
-`HhrbBNnJjMDPpQqdmRKfFklVvLQmMqCcIzZdDiTtTtdBbQqDEWqQwrRBbbBelLlTtfFBbGDdJeEjgLtTYyjZzKABbayYdrRDkAaJeSsEFtdDTfFfRrAaxXRvVPpzZORrylLlLYZzornNzijWwJvVeEmSsMmlLMBbIBbxxaADLlZzdyY`;
+    'HhrbBNnJjMDPpQqdmRKfFklVvLQmMqCcIzZdDiTtTtdBbQqDEWqQwrRBbbBelLlTtfFBbGDdJeEjgLtTYyjZzKABbayYdrRDkAaJeSsEFtdDTfFfRrAaxXRvVPpzZORrylLlLYZzornNzijWwJvVeEmSsMmlLMBbIBbxxaADLlZzdyY';
 
 const input3: string =
-`RrAaxXRvVPpzZORrylLlLYZzornNzijWwJvVeEmSsMmlLMBbIBbxxaADLlZzdyY`;
+    'RrAaxXRvVPpzZORrylLlLYZzornNzijWwJvVeEmSsMmlLMBbIBbxxaADLlZzdyY';
 
 console.log(doPart1(input));
 
