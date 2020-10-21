@@ -27,90 +27,9 @@ function buildMap(input: string): Bot[] {
     return bots;
 }
 
-type Range = {
-    a: number;
-    b: number;
-    c: Boundaries;
-}
-
-type Boundaries = {
-    lo: number;
-    hi: number;
-}
-
-type RangeMap = {
-    [key: string]: RangeMapItem;
-}
-
-type RangeMapItem = {
-    [key: number]: boolean;
-}
-
-function inRange(minA: number, maxA: number, minB: number, maxB: number): Boundaries | undefined {
-    const min: number = Math.max(minA, minB);
-    const max: number = Math.min(maxA, maxB);
-
-    if (min <= max) {
-        return {
-            lo: min,
-            hi: max
-        }
-    } else {
-        return undefined;
-    }
-}
-
-function getRangeKey(range: Range): string {
-    return `lo:${range.c.lo},hi:${range.c.hi}`;
-}
-
-function getRanges(bots: Bot[], coordfn: (b: Bot) => number): Range[] {
-    const result: Range[] = [];
-
-    for (let i: number = 0; i < bots.length; i++) {
-        const b: Bot = bots[i];
-        for (let j: number = i; j < bots.length; j++) {
-            const bb: Bot = bots[j];
-            const minb: number = coordfn(b) - b.r;
-            const maxb: number = coordfn(b) + b.r;
-            const minbb: number = coordfn(bb) - bb.r;
-            const maxbb: number = coordfn(bb) + bb.r;
-
-            const inRangeCoord: Boundaries | undefined = inRange(minb, maxb, minbb, maxbb);
-            if (inRangeCoord !== undefined) {
-                result.push({
-                    a: i,
-                    b: j,
-                    c: inRangeCoord
-                });
-            }
-        }
-    }
-
-    return result;
-}
-
-function getRangeMap(ranges: Range[]): RangeMap {
-    const result: RangeMap = {};
-
-    for (let i: number = 0; i < ranges.length; i++) {
-        const r: Range = ranges[i];
-        const k: string = getRangeKey(r);
-        if (result[k] === undefined) {
-            result[k] = {};
-        }
-        result[k][r.a] = true;
-        result[k][r.b] = true;
-        for (let j: number = 0; j < ranges.length; j++) {
-            const rr: Range = ranges[j];
-            if (r !== rr && inRange(r.c.lo, r.c.hi, rr.c.lo, rr.c.hi)) {
-                result[k][rr.a] = true;
-                result[k][rr.b] = true;
-            }
-        }
-    }
-
-    return result;
+type Segment = {
+    dist: number;
+    e: number;
 }
 
 // PART 1
@@ -133,26 +52,37 @@ export function doPart1(input: string): void {
 }
 
 // PART 2
-// doPart2(DAY_23_INPUT);
+doPart2(DAY_23_INPUT);
 
 export function doPart2(input: string): void {
     const bots: Bot[] = buildMap(input);
-    const rangesX: Range[] = getRanges(bots, b => b.x);
-    const rangeXMap: RangeMap = getRangeMap(rangesX);
 
-    const rangesY: Range[] = getRanges(bots, b => b.y);
-    const rangeYMap: RangeMap = getRangeMap(rangesY);
+    const segments: Segment[] = [];
+    bots.forEach(b => {
+        const distance: number = Math.abs(b.x) + Math.abs(b.y) + Math.abs(b.z);
+        segments.push({
+            dist: Math.max(0, distance - b.r),
+            e: 1
+        });
+        segments.push({
+            dist: distance + b.r,
+            e: -1
+        });
+    });
 
-    const rangesZ: Range[] = getRanges(bots, b => b.z);
-    const rangeZMap: RangeMap = getRangeMap(rangesZ);
+    let count: number = 0;
+    let maxCount: number = 0;
+    let result: number = 0;
 
-    console.log(bots);
+    const queue: Segment[] = segments.sort((a,b) => a.dist < b.dist ? -1 : a.dist > b.dist ? 1 : 0).reverse();
+    while (queue.length > 0) {
+        const s: Segment = queue.pop()!;
+        count += s.e;
+        if (count > maxCount) {
+            result = s.dist;
+            maxCount = count;
+        }
+    }
 
-    console.log(rangesX);
-    console.log(rangesY);
-    console.log(rangesZ);
-
-    console.log(rangeXMap);
-    console.log(rangeYMap);
-    console.log(rangeZMap);
+    console.log(result);
 }
