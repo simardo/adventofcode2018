@@ -55,6 +55,7 @@ export function doPart1(input: string): void {
 doPart2(DAY_23_INPUT);
 
 export function doPart2(input: string): void {
+    // based on https://www.reddit.com/r/adventofcode/comments/a8s17l/2018_day_23_solutions/ecfkmyo/
     const bots: Bot[] = buildMap(input);
 
     const segments: Segment[] = [];
