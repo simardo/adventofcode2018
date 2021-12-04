@@ -57,14 +57,14 @@ function computeSquare(serial: number, size: number): Coord {
 }
 
 // PART 1
-console.log(doPart1(7857));
+console.log(doPart1(0));
 
 export function doPart1(serial: number): Coord {
     return computeSquare(serial, 3);
 }
 
 // PART 2
-console.log(doPart2(7857));
+console.log(doPart2(0));
 
 export function doPart2(serial: number): Coord {
     let maxPower: number = 0;

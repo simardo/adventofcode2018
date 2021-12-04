@@ -37,7 +37,7 @@ function toString(recipe: Recipe): string {
 }
 
 // PART 1
-console.log(doPart1(165061));
+console.log(doPart1(0));
 
 export function doPart1(input: number): string {
     const recipe1: Recipe = { score: 3, active: true };
@@ -86,7 +86,7 @@ export function doPart1(input: number): string {
 }
 
 // PART 2
-console.log(doPart2(165061));
+console.log(doPart2(0));
 
 export function doPart2(input: number): number {
     const inputV: number[] = [...input.toString()].map(s => Number.parseInt(s));
